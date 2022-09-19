@@ -2,7 +2,7 @@
 TODO: create schema of task that should contain: title, description. optional: starting and due date.
 */
 
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const TaskSchema = new mongoose.Schema(
   {
@@ -20,8 +20,9 @@ const TaskSchema = new mongoose.Schema(
       default: false,
     },
     user: {
-      type: mongoose.SchemaType.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      default: "",
       ref: "user",
     },
     startDate: {
