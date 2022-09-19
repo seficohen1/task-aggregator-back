@@ -9,7 +9,7 @@ async function seedUsers() {
 
   await UserModel.deleteMany({});
   await UserModel.create([...users]);
-  // await Promise.all([UserModel.deleteMany({}), UserModel.create([...users])]);
+  
 }
 
 const getRandomItem = (arr = []) => arr[Math.floor(Math.random() * arr.length)];
@@ -25,4 +25,5 @@ const seedTasks = async () => {
   }));
   return TaskModel.insertMany(tasksWithUsers);
 };
+
 export { seedUsers, seedTasks };
