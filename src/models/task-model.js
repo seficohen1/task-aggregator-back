@@ -19,11 +19,11 @@ const TaskSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    user: {
-      type: mongoose.SchemaType.ObjectId,
-      // required: true,
-      ref: "user",
-    },
+    // user: {
+    //   type: mongoose.SchemaType.ObjectId,
+    //   // required: true,
+    //   ref: "user",
+    // },
     startDate: {
       type: Date,
     },

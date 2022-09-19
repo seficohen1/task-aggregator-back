@@ -27,7 +27,7 @@ function getSeedUsers() {
       email: "john@users.com",
       password: "12345678",
       role: "user",
-    },   
+    },
     {
       firstName: "Jesus",
       lastName: "Calvo",
@@ -56,8 +56,42 @@ function getSeedUsers() {
       password: "12345678",
       role: "admin",
     },
-  ]
+  ];
 }
 
+const getSeedTasks = () => {
+  return [
+    {
+      title: "walk the dog",
+      desciption: "not after 16:30",
+    },
+    {
+      title: "Go get danny form the course",
+      desciption: "22nd Street",
+    },
+    {
+      title: "get milk and bread from the store",
+    },
+    {
+      title: "call Donna and postpone dinner",
+      desciption: "check if she could come over instead",
+    },
+    {
+      title: "call mom",
+    },
+    {
+      title: "fix bug in app",
+      desciption: "for tomorrow morning",
+    },
+    {
+      title: "conference meeting with the ny team",
+      desciption: "make sure dog house is ready",
+    },
+    {
+      title: "check with Julian if we can deply",
+      desciption: "thursday morning",
+    },
+  ];
+};
 
-export { getSeedUsers };
+export { getSeedUsers, getSeedTasks };

@@ -5,14 +5,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // * uncomment this line in order to seed users
-// import { seedUsers } from './db/seed.js'
-
+import { seedUsers, seedTasks } from "./db/seed.js";
 
 connectDB().then(async function onServerInit() {
   CONFIG.development.logger.info("DB CONNECTED");
 
   // * uncomment this line in order to seed users
-  // await seedUsers();
+  await seedTasks();
 
   app.listen(CONFIG.development.app.PORT, () => {
     CONFIG.development.logger.info(

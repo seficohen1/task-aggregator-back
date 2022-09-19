@@ -11,10 +11,10 @@ const app = express();
 app.use(morgan("dev"));
 app.use(helmet());
 // app.use(json())
-app.use(express.json())
+app.use(express.json());
 
 app.use(cors({ origin: "*" }));
 
-app.use(TaskRouter)
+app.use(TaskRouter);
 
 export default app;
