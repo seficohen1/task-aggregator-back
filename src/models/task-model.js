@@ -14,23 +14,22 @@ const TaskSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    // ,
-    // completed: {
-    //   type: Boolean,
-    //   required: true,
-    //   default: false,
-    // },
-    // user: {
-    //   type: mongoose.SchemaType.ObjectId,
-    //   // required: true,
-    //   ref: "user",
-    // },
-    // startDate: {
-    //   type: Date,
-    // },
-    // dueDate: {
-    //   type: Date,
-    // },
+    completed: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    user: {
+      type: mongoose.SchemaType.ObjectId,
+      // required: true,
+      ref: "user",
+    },
+    startDate: {
+      type: Date,
+    },
+    dueDate: {
+      type: Date,
+    },
   },
   { timestamps: true },
 );

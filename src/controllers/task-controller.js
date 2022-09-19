@@ -1,5 +1,5 @@
 import TaskModel from "../models/task-model.js";
-console.log(TaskModel)
+
 /*
 TODO: CRUD functions for Tasks
 */
@@ -30,6 +30,7 @@ export const deleteTask = (req, res, next) => {};
 
 const taskController = {
   createTask: createTask,
+
 }
 
 export { taskController }

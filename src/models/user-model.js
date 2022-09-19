@@ -37,12 +37,12 @@ const UserSchema = new mongoose.Schema(
       enum: ["admin", "user"],
     },
   },
-  { timestamps },
+  // { timestamps },
 );
 
 UserSchema.pre("save", async function passwordPreSave(next) {
   const user = this.isModified;
-  if (!user("password")) return next();
+  if (!this.isModified('password')) return next();
 
   try {
     const hash = await bcrypt.hash(this.password, 12);
@@ -58,3 +58,5 @@ UserSchema.methods.comparePassword = function comparePassword(candidate) {
 };
 
 const UserModel = new mongoose.model("user", UserSchema);
+
+export default UserModel;
