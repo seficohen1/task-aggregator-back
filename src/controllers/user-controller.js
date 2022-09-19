@@ -7,3 +7,10 @@ const getUser = (res, req, next) => {};
 const createUser = (res, req, next) => {};
 const updateUser = (res, req, next) => {};
 const deleteUser = (res, req, next) => {};
+
+
+
+
+
+
+export { getUsers, getUser, createUser, updateUser, deleteUser };

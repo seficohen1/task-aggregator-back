@@ -10,4 +10,4 @@ UserRouter.delete("/dashboard/:userId", UserController.deleteUser);
 
 
 
-export { getUsers, getUser, createUser, updateUser, deleteUser };
+export { UserRouter };
