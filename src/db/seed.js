@@ -3,17 +3,14 @@ import { getSeedUsers } from './seed-data.js'
 
 
 
-
-
-async function seedUsers () {
-  console.log('calling seedUsers')
-  
+async function seedUsers () {  
   const users = getSeedUsers();
-
+  
   await UserModel.deleteMany({});
-  await UserModel.create([...users])
-  // await Promise.all([UserModel.deleteMany({}), UserModel.create([...users])]);
+  await UserModel.create([...users]);
 }
+
+
 
 
 

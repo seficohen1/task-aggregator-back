@@ -18,7 +18,7 @@ export const createTask = async (req, res, next) => {
     res.status(200).send({
       data: {
        task
-      }      
+      }
     })
   } catch (error) {
     next(error)
