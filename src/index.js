@@ -1,8 +1,6 @@
 import app from "./server.js";
 import connectDB from "./db/connect.js";
 import CONFIG from "./conifg/config.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 // * uncomment this line in order to seed users
 import { seedUsers, seedTasks } from "./db/seed.js";

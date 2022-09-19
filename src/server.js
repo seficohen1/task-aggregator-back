@@ -4,15 +4,18 @@ import morgan from "morgan";
 import cors from "cors";
 import TaskRouter from "./routes/task-routets.js";
 
-// import { json } from "express/lib/response";
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
+<<<<<<< HEAD
 // app.use(json())
 app.use(express.json());
 
+=======
+app.use(express.json())
+>>>>>>> ac0532c2fca8a7f5ba340e97cb39f530083c4545
 app.use(cors({ origin: "*" }));
 
 app.use(TaskRouter);
