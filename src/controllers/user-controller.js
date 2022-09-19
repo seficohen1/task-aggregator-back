@@ -1,9 +1,5 @@
-/*
-TODO: CRUD functions for Tasks
-*/
-
 import UserModel from "../models/user-model.js";
-import mongoose from "mongoose";
+
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -18,7 +14,6 @@ const getAllUsers = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   const { userId } = req.params;
-  console.log(UserModel)
 
   try {
     const userById = await UserModel.findOne({ _id: userId })
@@ -74,7 +69,6 @@ const updateUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   const { userId } = req.params;
-  console.log(userId)
 
   try {
     const deletedUser = await UserModel.findOneAndDelete({ _id: userId })

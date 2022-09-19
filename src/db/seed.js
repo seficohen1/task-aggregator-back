@@ -3,8 +3,6 @@ import TaskModel from "../models/task-model.js";
 import { getSeedUsers, getSeedTasks } from "./seed-data.js";
 
 async function seedUsers() {
-  console.log("calling seedUsers");
-
   const users = getSeedUsers();
 
   await UserModel.deleteMany({});
