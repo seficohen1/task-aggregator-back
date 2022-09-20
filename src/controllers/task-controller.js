@@ -5,7 +5,7 @@ export const getAllTasks = async (req, res, next) => {
   try {
     const tasks = await TaskModel.find({});
     req.docs = tasks;
-    next()
+    next();
   } catch (error) {
     next(error);
   }
@@ -19,7 +19,7 @@ export const getTask = async (req, res, next) => {
       .populate({ path: "user", select: { _id: 1, firstName: 1, lastName: 1 } })
       .lean()
       .exec();
-      console.log(taskById)
+    console.log(taskById);
     res.status(200).send({
       data: {
         _id: taskById._id,
@@ -81,10 +81,10 @@ export const deleteTask = async (req, res, next) => {
 const taskController = {
   getAllTasks,
   createTask,
-  getTask, 
+  getTask,
   deleteTask,
-  createTask, 
-  updateTask, 
+  createTask,
+  updateTask,
 };
 
 export { taskController };
