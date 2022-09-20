@@ -1,11 +1,11 @@
+import { paginateResults } from "../middleware/pagination.js";
 import TaskModel from "../models/task-model.js";
 
 export const getAllTasks = async (req, res, next) => {
   try {
     const tasks = await TaskModel.find({});
-    res.status(200).send({
-      data: tasks,
-    });
+    req.docs = tasks;
+    next()
   } catch (error) {
     next(error);
   }
@@ -16,9 +16,10 @@ export const getTask = async (req, res, next) => {
 
   try {
     const taskById = await TaskModel.findOne({ _id: id })
-      .populate({ path: "user", select: { firstName: 1, lastName: 2 } })
+      .populate({ path: "user", select: { _id: 1, firstName: 1, lastName: 1 } })
       .lean()
       .exec();
+      console.log(taskById)
     res.status(200).send({
       data: {
         _id: taskById._id,
