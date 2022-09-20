@@ -15,7 +15,7 @@ const getRandomItem = (arr = []) => arr[Math.floor(Math.random() * arr.length)];
 const seedTasks = async () => {
   await Promise.all([UserModel.deleteMany({}), TaskModel.deleteMany({})]);
 
-  const users = await UserModel.insertMany([...getSeedUsers()]);
+  const users = await UserModel.create([...getSeedUsers()]);
   const usersId = users.map((user) => user._id);
   const tasksWithUsers = [...getSeedTasks()].map((task) => ({
     ...task,
