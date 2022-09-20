@@ -1,9 +1,4 @@
 import TaskModel from "../models/task-model.js";
-import mongoose from "mongoose";
-
-/*
-TODO: CRUD functions for Tasks
-*/
 
 export const getAllTasks = async (req, res, next) => {
   try {
@@ -83,7 +78,12 @@ export const deleteTask = async (req, res, next) => {
 };
 
 const taskController = {
-  createTask: createTask,
+  getAllTasks,
+  createTask,
+  getTask, 
+  deleteTask,
+  createTask, 
+  updateTask, 
 };
 
 export { taskController };

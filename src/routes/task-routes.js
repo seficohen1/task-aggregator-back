@@ -6,10 +6,10 @@ const Router = express.Router;
 
 const TaskRouter = Router();
 
-TaskRouter.get("/dashboard/tasks", getAllTasks);
-TaskRouter.get("/dashboard/tasks/:taskId", getTask);
-TaskRouter.post("/dashboard/tasks", createTask);
-TaskRouter.patch("/dashboard/tasks/:taskId", updateTask);
-TaskRouter.delete("/dashboard/tasks/:taskId", deleteTask);
+TaskRouter.get("/dashboard/tasks", taskController.getAllTasks);
+TaskRouter.get("/dashboard/tasks/:taskId", taskController.getTask);
+TaskRouter.post("/dashboard/tasks", taskController.createTask);
+TaskRouter.patch("/dashboard/tasks/:taskId", taskController.updateTask);
+TaskRouter.delete("/dashboard/tasks/:taskId", taskController.deleteTask);
 
 export default TaskRouter;

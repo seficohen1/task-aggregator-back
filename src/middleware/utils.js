@@ -1,6 +1,9 @@
-export function paginatedResults(model) {
-  // middleware function
-  return (req, res, next) => {
+import { restart } from "nodemon";
+
+// add function for pagination (add to request results)
+export function paginateResults(model) {
+  
+  return async (req, res, next) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
 
@@ -9,7 +12,7 @@ export function paginatedResults(model) {
     const endIndex = page * limit;
 
     const results = {};
-    if (endIndex < model.length) {
+    if (endIndex < await model.contDocuments().exec()) {
       results.next = {
         page: page + 1,
         limit: limit,
@@ -22,10 +25,12 @@ export function paginatedResults(model) {
         limit: limit,
       };
     }
-
-    results.results = model.slice(startIndex, endIndex);
-
-    res.paginatedResults = results;
-    next();
-  };
+    try {
+      results.results = model.find().limit(limit).skip(startIndex).exec();
+      res.paginatedResults = results;
+      next();
+    } catch (error) {
+      res.status(500).send({ message: error.message })
+    }
+  }
 }
