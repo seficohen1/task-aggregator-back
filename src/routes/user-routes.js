@@ -8,3 +8,6 @@ UserRouter.get("/dashboard/:userId");
 UserRouter.post("/dashboard/users");
 UserRouter.patch("/dashboard/:userId");
 UserRouter.delete("/dashboard/:userId");
+UserRouter.post("/login");
+
+export default UserRouter;

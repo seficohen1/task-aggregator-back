@@ -34,18 +34,20 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
+      required: true,
       enum: ["admin", "user"],
+      default: "user",
     },
   },
   // { timestamps },
 );
 
 UserSchema.pre("save", async function passwordPreSave(next) {
-  const user = this.isModified;
   if (!this.isModified("password")) return next();
 
   try {
-    const hash = await bcrypt.hash(this.password, 12);
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(this.password, salt);
     this.password = hash;
     return next();
   } catch (error) {
@@ -53,8 +55,24 @@ UserSchema.pre("save", async function passwordPreSave(next) {
   }
 });
 
-UserSchema.methods.comparePassword = function comparePassword(candidate) {
+UserSchema.statics.comparePassword = function comparePassword(candidate) {
   return bcrypt.compare(candidate, this.password);
+};
+
+// static method to login user
+
+UserSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email });
+  console.log(this);
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+
+    if (auth) {
+      return user;
+    }
+    throw Error("Incorrect password");
+  }
+  throw Error("incorrect email");
 };
 
 const UserModel = new mongoose.model("user", UserSchema);
