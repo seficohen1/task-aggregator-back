@@ -1,6 +1,6 @@
 import app from "./server.js";
 import connectDB from "./db/connect.js";
-import CONFIG from "./conifg/config.js";
+import CONFIG from "./config/config.js";
 
 // * uncomment this line in order to seed users
 // import { seedTasks } from "./db/seed.js";

@@ -3,13 +3,11 @@ import TaskModel from "../models/task-model.js";
 import { getSeedUsers, getSeedTasks } from "./seed-data.js";
 
 async function seedUsers() {
-  console.log("calling seedUsers");
-
   const users = getSeedUsers();
 
   await UserModel.deleteMany({});
   await UserModel.create([...users]);
-  // await Promise.all([UserModel.deleteMany({}), UserModel.create([...users])]);
+  
 }
 
 const getRandomItem = (arr = []) => arr[Math.floor(Math.random() * arr.length)];
@@ -25,4 +23,5 @@ const seedTasks = async () => {
   }));
   return TaskModel.insertMany(tasksWithUsers);
 };
+
 export { seedUsers, seedTasks };
