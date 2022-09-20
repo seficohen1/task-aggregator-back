@@ -1,5 +1,6 @@
 import express from "express";
 // import { createTask } from "../controllers/task-controller";
+import authToken from "../middleware/auth.js";
 import {
   getAllTasks,
   getTask,
@@ -14,8 +15,8 @@ const TaskRouter = Router();
 
 TaskRouter.get("/dashboard/tasks", getAllTasks);
 TaskRouter.get("/dashboard/tasks/:taskId", getTask);
-TaskRouter.post("/dashboard/tasks", createTask);
-TaskRouter.patch("/dashboard/tasks/:taskId", updateTask);
-TaskRouter.delete("/dashboard/tasks/:taskId", deleteTask);
+TaskRouter.post("/dashboard/tasks", authToken, createTask);
+TaskRouter.patch("/dashboard/tasks/:taskId", authToken, updateTask);
+TaskRouter.delete("/dashboard/tasks/:taskId", authToken, deleteTask);
 
 export default TaskRouter;

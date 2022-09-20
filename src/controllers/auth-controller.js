@@ -18,13 +18,22 @@ const handleErrors = (error) => {
   return errorObj;
 };
 
-const createToken = (id) => {
-  return jsonwebtoken.sign({ id }, "secret", {
-    expiresIn: 10000,
-  });
+const getUserObject = (user) => {
+  return {
+    id: user._id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    password: user.password,
+    role: user.role,
+  };
 };
 
-const signup_post = async (req, res, next) => {
+const generateAccessToken = (user) => {
+  return jsonwebtoken.sign(user, process.env.ACCESS_TOKEN_SECRET);
+};
+
+const signup = async (req, res, next) => {
   const { email, password, firstName, lastName } = req.body;
 
   try {
@@ -34,24 +43,25 @@ const signup_post = async (req, res, next) => {
       firstName,
       lastName,
     });
-    const token = createToken(user._id);
-    res.status(201).send(user);
+
+    res.status(201).send({ data: "Success!" });
   } catch (error) {
     const err = handleErrors(error);
     res.status(500).send(err);
   }
 };
 
-const login_post = async (req, res, next) => {
+const login = async (req, res, next) => {
   const { password, email } = req.body;
 
   try {
     const authenticatedUser = await UserModel.login(email, password);
-
-    res.status(200).send(authenticatedUser);
+    const userObj = getUserObject(authenticatedUser);
+    const token = generateAccessToken(userObj);
+    res.status(200).send({ authenticatedUser, token });
   } catch (error) {
     next(error);
   }
 };
 
-export { signup_post, login_post };
+export { signup, login };
