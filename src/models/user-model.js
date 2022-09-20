@@ -31,27 +31,30 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: [8, "The password is too short"],
+      select: false,
     },
     role: {
       type: String,
       enum: ["admin", "user"],
     },
   },
-  // { timestamps },
+  { timestamps: true },
 );
 
 UserSchema.pre("save", async function passwordPreSave(next) {
-  const user = this.isModified;
-  if (!this.isModified("password")) return next();
-
-  try {
-    const hash = await bcrypt.hash(this.password, 12);
-    this.password = hash;
-    return next();
-  } catch (error) {
-    return next(error);
+  if (this.isModified("password")) {
+    try {
+      const hash = await bcrypt.hash(this.password, 12);
+      this.password = hash;
+      return next();
+    } catch (error) {
+      return next(error);
+    }
   }
 });
+
+
+
 
 UserSchema.methods.comparePassword = function comparePassword(candidate) {
   return bcrypt.compare(candidate, this.password);
