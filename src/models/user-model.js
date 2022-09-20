@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: [8, "The password is too short"],
+      select: false,
     },
     role: {
       type: String,
@@ -39,23 +40,23 @@ const UserSchema = new mongoose.Schema(
       default: "user",
     },
   },
-  // { timestamps },
+  { timestamps: true },
 );
 
 UserSchema.pre("save", async function passwordPreSave(next) {
-  if (!this.isModified("password")) return next();
-
-  try {
-    const salt = await bcrypt.genSalt();
-    const hash = await bcrypt.hash(this.password, salt);
-    this.password = hash;
-    return next();
-  } catch (error) {
-    return next(error);
+  if (this.isModified("password")) {
+    try {
+      const hash = await bcrypt.hash(this.password, 12);
+      this.password = hash;
+      return next();
+    } catch (error) {
+      return next(error);
+    }
   }
 });
 
-UserSchema.statics.comparePassword = function comparePassword(candidate) {
+
+UserSchema.methods.comparePassword = function comparePassword(candidate) {
   return bcrypt.compare(candidate, this.password);
 };
 
