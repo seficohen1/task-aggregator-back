@@ -2,7 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
-import TaskRouter from "./routes/task-routets.js";
+import TaskRouter from "./routes/task-routes.js";
 import UserRouter from "./routes/user-routes.js";
 import AuthRouter from "./routes/auth-routes.js";
 import UserModel from "./models/user-model.js";
