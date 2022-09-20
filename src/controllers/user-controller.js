@@ -4,9 +4,8 @@ import UserModel from "../models/user-model.js";
 const getAllUsers = async (req, res, next) => {
   try {
     const tasks = await UserModel.find({});
-    res.status(200).send({
-      tasks
-    })
+    req.docs = tasks;
+    next();
   } catch(error) {
     next(error)
   }
