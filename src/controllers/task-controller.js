@@ -3,7 +3,10 @@ import TaskModel from "../models/task-model.js";
 
 export const getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await TaskModel.find({});
+    const tasks = await TaskModel.find({})
+      .populate({ path: "user", select: { _id: 1, firstName: 1, lastName: 1 } })
+      .lean()
+      .exec();    
     req.docs = tasks;
     next();
   } catch (error) {
