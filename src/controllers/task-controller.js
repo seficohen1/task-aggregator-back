@@ -30,6 +30,8 @@ export const getTask = async (req, res, next) => {
           firstName: taskById.user.firstName,
           lastName: taskById.user.lastName,
         },
+        startDate: taskById.user.startDate,
+        endDate: taskById.user.endDate,
       },
     });
   } catch (error) {
