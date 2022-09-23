@@ -63,34 +63,42 @@ const getSeedTasks = () => {
   return [
     {
       title: "walk the dog",
-      desciption: "not after 16:30",
+      description: "not after 16:30",
+      status: 'pending'
       
     },
     {
       title: "Go get danny form the course",
-      desciption: "22nd Street",
+      description: "22nd Street",
+      status: 'cancelled'
     },
     {
       title: "get milk and bread from the store",
+      status: 'complete'
     },
     {
       title: "call Donna and postpone dinner",
-      desciption: "check if she could come over instead",
+      description: "check if she could come over instead",
+      status: "complete"
     },
     {
       title: "call mom",
+      status: 'pending'
     },
     {
       title: "fix bug in app",
-      desciption: "for tomorrow morning",
+      description: "for tomorrow morning",
+      status: 'complete'
     },
     {
       title: "conference meeting with the ny team",
-      desciption: "make sure dog house is ready",
+      description: "make sure dog house is ready",
+      status: 'cancelled'
     },
     {
       title: "check with Julian if we can deply",
-      desciption: "thursday morning",
+      description: "thursday morning",
+      status: 'pending'
     },
   ];
 };
