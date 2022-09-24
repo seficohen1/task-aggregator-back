@@ -79,7 +79,7 @@ const getSeedTasks = () => {
     {
       title: "call Donna and postpone dinner",
       description: "check if she could come over instead",
-      status: "complete"
+      status: "in progress"
     },
     {
       title: "call mom",
@@ -96,9 +96,9 @@ const getSeedTasks = () => {
       status: 'cancelled'
     },
     {
-      title: "check with Julian if we can deply",
+      title: "check with Julian if we can deploy",
       description: "thursday morning",
-      status: 'pending'
+      status: 'in progress'
     },
   ];
 };
