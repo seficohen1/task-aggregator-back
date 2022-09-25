@@ -59,11 +59,11 @@ export const createTask = async (req, res, next) => {
 
 export const updateTask = async (req, res, next) => {
   const taskId = req.params.taskId;
-  const { title, description, completed } = req.body;
+  const { title, description, status, user, startDate, dueDate } = req.body;
   try {
     const taskToUpdate = await TaskModel.findOneAndUpdate(
       { _id: taskId },
-      { $set: { title, description, completed } },
+      { $set: { title, description, status, user, startDate, dueDate } },
       { new: true },
     );
     res.status(200).send({ data: taskToUpdate });
