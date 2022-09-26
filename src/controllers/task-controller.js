@@ -71,6 +71,7 @@ export const updateTask = async (req, res, next) => {
     next(error);
   }
 };
+
 export const deleteTask = async (req, res, next) => {
   const taskId = req.params.taskId;
   try {
@@ -82,6 +83,8 @@ export const deleteTask = async (req, res, next) => {
     next(error);
   }
 };
+
+
 
 const taskController = {
   getAllTasks,

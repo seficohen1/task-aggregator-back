@@ -80,9 +80,29 @@ const deleteUser = async (req, res, next) => {
 };
 
 
+const getUserByName = async (req, res, next) => {
+  let receivedFirstName = req.params.firstName;
+  receivedFirstName = receivedFirstName[0].toUpperCase() + receivedFirstName.substring(1)
+  let receivedLastName = req.params.lastName;
+  receivedLastName = receivedLastName[0].toUpperCase() + receivedLastName.substring(1)
+
+  try {
+    const userByName = await UserModel.find({ firstName: receivedFirstName, lastName: receivedLastName })
+      .lean()
+      .exec();
+      res.status(200).send({
+        userByName,
+    })
+  } catch(error) {
+    
+    next(error)
+  }
+};
+
 const UserController = {
   getAllUsers, 
   getUser, 
+  getUserByName,
   createUser, 
   updateUser, 
   deleteUser
