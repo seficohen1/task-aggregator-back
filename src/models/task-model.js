@@ -25,9 +25,6 @@ const TaskSchema = new mongoose.Schema(
       // required: true,
       ref: "user",
     },
-    startDate: {
-      type: Date,
-    },
     dueDate: {
       type: Date,
     },
