@@ -50,7 +50,8 @@ export const createTask = async (req, res, next) => {
       title: title,
       description: description,
       user: user,
-      dueDate: dueDate
+      dueDate: dueDate,
+      status: status
     });
     res.status(200).send({ data: "task was created successfully" });
   } catch (error) {
