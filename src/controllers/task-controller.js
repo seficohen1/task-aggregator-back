@@ -43,13 +43,14 @@ export const getTask = async (req, res, next) => {
 };
 
 export const createTask = async (req, res, next) => {
-  const { title, description, user } = req.body;
+  const { title, description, user, dueDate, status } = req.body;
 
   try {
     const task = await TaskModel.create({
       title: title,
       description: description,
       user: user,
+      dueDate: dueDate
     });
     res.status(200).send({ data: "task was created successfully" });
   } catch (error) {
